@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gateplus Welcome Email</title>
+  <style>
+    /* Reset styles for email clients */
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #556582;
+      color: #ffffff;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      color: #333333;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .email-header {
+      background-color: #3a4b5c;
+      padding: 20px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .email-body {
+      padding: 30px 20px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .email-body p {
+      margin-bottom: 20px;
+    }
+
+    .btn-login {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #556582;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background-color: #3a4b5c;
+    }
+
+    .footer {
+      background-color: #f1f1f1;
+      color: #555555;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #556582;
+      text-decoration: none;
+    }
+
+    @media screen and (max-width: 480px) {
+      .email-body {
+        padding: 20px 15px;
+        font-size: 15px;
+      }
+
+      .btn-login {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="email-header">
+      Welcome to Gateplus!
+    </div>
+    <div class="email-body">
+      <p>Your account has been created with this email address.</p>
+      <p>You can log in at:</p>
+      <p><a href="#" id="login-link" class="btn-login">Login Here</a></p>
+      <p>Your temporary password is: <strong id="temp-password">********</strong></p>
+      <p>If you did not create this account, please contact support.</p>
+    </div>
+    <div class="footer">
+      &copy; 2026 Gateplus. All rights reserved.<br>
+      <a href="#" id="support-link">Contact Support</a>
+    </div>
+  </div>
+
+  <script>
+    // Example dynamic data
+    const settings = {
+      FRONTEND_BASE_URL: "https://www.gateplus.com",
+      FRONTEND_LOGIN_URL: "login"
+    };
+    const temp_password = generateTempPassword(10); // Generates a random 10-character password
+
+    // Update login link dynamically
+    const loginLink = document.getElementById('login-link');
+    loginLink.href = `${settings.FRONTEND_BASE_URL}/${settings.FRONTEND_LOGIN_URL}`;
+    loginLink.textContent = `${settings.FRONTEND_BASE_URL}/${settings.FRONTEND_LOGIN_URL}`;
+
+    // Update temporary password dynamically
+    document.getElementById('temp-password').textContent = temp_password;
+
+    // Support link
+    document.getElementById('support-link').href = "mailto:support@gateplus.com";
+
+    // Function to generate random temporary password
+    function generateTempPassword(length) {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return password;
+    }
+  </script>
+</body>
+</html>
